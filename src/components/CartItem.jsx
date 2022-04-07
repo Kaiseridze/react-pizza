@@ -1,6 +1,26 @@
 import React from "react"
+import Button from "./Button"
 
-function CartItem({ name, type, size }) {
+function CartItem({
+	id,
+	name,
+	type,
+	size,
+	totalPrice,
+	totalCount,
+	onRemove,
+	onPlusItem,
+	onMinusItem,
+}) {
+	const removePizza = () => {
+		onRemove(id)
+	}
+	const handlePlus = () => {
+		onPlusItem(id)
+	}
+	const handleMinus = () => {
+		onMinusItem(id)
+	}
 	return (
 		<div className='cart__item'>
 			<div className='cart__item-img'>
@@ -17,7 +37,9 @@ function CartItem({ name, type, size }) {
 				</p>
 			</div>
 			<div className='cart__item-count'>
-				<div className='button button--outline button--circle cart__item-count-minus'>
+				<div
+					onClick={handleMinus}
+					className='button button--outline button--circle cart__item-count-minus'>
 					<svg
 						width='10'
 						height='10'
@@ -34,8 +56,10 @@ function CartItem({ name, type, size }) {
 						/>
 					</svg>
 				</div>
-				<b>2</b>
-				<div className='button button--outline button--circle cart__item-count-plus'>
+				<b>{totalCount}</b>
+				<div
+					onClick={handlePlus}
+					className='button button--outline button--circle cart__item-count-plus'>
 					<svg
 						width='10'
 						height='10'
@@ -54,10 +78,10 @@ function CartItem({ name, type, size }) {
 				</div>
 			</div>
 			<div className='cart__item-price'>
-				<b>770 ₽</b>
+				<b>{totalPrice} ₽</b>
 			</div>
 			<div className='cart__item-remove'>
-				<div className='button button--outline button--circle'>
+				<Button onClick={removePizza} className='button--circle' outline>
 					<svg
 						width='10'
 						height='10'
@@ -73,7 +97,7 @@ function CartItem({ name, type, size }) {
 							fill='#EB5A1E'
 						/>
 					</svg>
-				</div>
+				</Button>
 			</div>
 		</div>
 	)

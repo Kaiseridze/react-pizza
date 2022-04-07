@@ -76,7 +76,7 @@ function Home() {
 								sizes={item.sizes}
 								id={item.id}
 								isLoading={true}
-								addedCount={cartItems[item.id] && cartItems[item.id].length }
+								addedCount={cartItems[item.id] && cartItems[item.id].items.length }
 								key={item.id}
 								onClickAddPizza={handleAddPizzaToCard}
 							/>
